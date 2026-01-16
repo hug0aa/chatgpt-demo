@@ -75,6 +75,9 @@ export default () => {
 
   return (
     <div my-6>
+      <div class="mb-4 rounded-sm bg-slate bg-op-10 px-4 py-3 text-sm text-slate">
+        請描述你要打造的 Polygon 鏈上版本「死了麼」，例如：核心功能、NFT/代幣機制、資料上鏈方式等。
+      </div>
       <For each={messageList()}>{(message) => <MessageItem role={message.role} message={message.content} />}</For>
       { currentAssistantMessage() && <MessageItem role="assistant" message={currentAssistantMessage} /> }
       <Show when={!loading()} fallback={() => <div class="h-12 my-4 flex items-center justify-center bg-slate bg-op-15 text-slate rounded-sm">AI is thinking...</div>}>
@@ -83,7 +86,7 @@ export default () => {
             ref={inputRef!}
             type="text"
             id="input"
-            placeholder="Enter something..."
+            placeholder="輸入你的構想，例如：我要寫一個 Polygon 鏈上版本的死了麼"
             autocomplete='off'
             autofocus
             disabled={loading()}
