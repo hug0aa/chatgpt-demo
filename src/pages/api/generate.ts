@@ -13,6 +13,12 @@ export const post: APIRoute = async (context) => {
     return new Response('No input text')
   }
 
+  const systemMessage = {
+    role: 'system',
+    content:
+      '你是一位產品與技術共創助手，專注於「Polygon 鏈上版本的死了麼」專案。請用繁體中文回覆，提供清晰的功能拆解、技術選型、鏈上/鏈下架構與風險提示。',
+  }
+
   const completion = await fetch('https://api.openai.com/v1/chat/completions', {
     headers: {
       'Content-Type': 'application/json',
@@ -21,7 +27,7 @@ export const post: APIRoute = async (context) => {
     method: 'POST',
     body: JSON.stringify({
       model: 'gpt-3.5-turbo',
-      messages,
+      messages: [systemMessage, ...messages],
       temperature: 0.6,
       stream: true,
     }),
